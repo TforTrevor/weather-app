@@ -11,4 +11,6 @@ export class WeatherData
     windSpeed: number = -1;
 
     weather: string = "";
+
+    time: Date = new Date(0);
 }

@@ -28,3 +28,12 @@
     font-size: 1rem;
     font-weight: 400;
 }
+.title {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+.time {
+    font-weight: 300;
+    font-size: 1.25rem;
+}

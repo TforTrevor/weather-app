@@ -49,6 +49,7 @@ export class WeatherService implements OnInit
       weatherData.humidity = res.list[0].main.humidity;
       weatherData.windSpeed = res.list[0].wind.speed;
       weatherData.weather = res.list[0].weather[0].description;
+      weatherData.time = new Date(res.list[0].dt_txt + " UTC");
       console.log(res);
     });
 

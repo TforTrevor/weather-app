@@ -1,7 +1,9 @@
 <mat-card>
     <mat-card-title>
-        <span>{{weatherData.city}}, {{zipCode}}</span>
-        <!-- <span>{{weatherData.country}}</span> -->
+        <div class="title">
+            <span>{{weatherData.city}}, {{zipCode}}</span>
+            <span class="time">{{weatherData.time | date: 'EEEE, h:mm a'}}</span>
+        </div>
         <mat-button-toggle-group [(value)]="system">
             <mat-button-toggle value="imperial">°F</mat-button-toggle>
             <mat-button-toggle value="metric">°C</mat-button-toggle>
