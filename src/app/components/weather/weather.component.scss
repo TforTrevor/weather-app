@@ -1,0 +1,30 @@
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+.mat-card-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.mat-card-content {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+.temperature {
+    font-weight: 500;
+    font-size: 2rem;
+    line-height: 1;
+}
+.additional-info {
+    font-weight: 300;
+}
+.mat-button-toggle-group {
+    font-size: 1rem;
+    font-weight: 400;
+}

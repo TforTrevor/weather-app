@@ -4,10 +4,11 @@ export class WeatherData
     city: string = "";
 
     temp: number = -1;
-    temp_max: number = -1;
-    temp_min: number = -1;
-    feels_like: number = -1;
+    tempMax: number = -1;
+    tempMin: number = -1;
+    feelsLike: number = -1;
     humidity: number = -1;
+    windSpeed: number = -1;
 
     weather: string = "";
 }

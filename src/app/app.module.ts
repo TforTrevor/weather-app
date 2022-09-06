@@ -9,17 +9,24 @@ import { HttpClientModule } from '@angular/common/http';
 import { WeatherComponent } from './components/weather/weather.component';
 import { WeatherGridComponent } from './components/weather-grid/weather-grid.component';
 
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { TemperaturePipe } from './pipes/temperature.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
     WeatherComponent,
-    WeatherGridComponent
+    WeatherGridComponent,
+    TemperaturePipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatCardModule,
+    MatButtonToggleModule
   ],
   providers: [WeatherService],
   bootstrap: [AppComponent]

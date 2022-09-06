@@ -43,12 +43,13 @@ export class WeatherService implements OnInit
       weatherData.country = res.city.country;
       weatherData.city = res.city.name;
       weatherData.temp = res.list[0].main.temp;
-      weatherData.temp_max = res.list[0].main.temp_max;
-      weatherData.temp_min = res.list[0].main.temp_min;
-      weatherData.feels_like = res.list[0].main.feels_like;
+      weatherData.tempMax = res.list[0].main.temp_max;
+      weatherData.tempMin = res.list[0].main.temp_min;
+      weatherData.feelsLike = res.list[0].main.feels_like;
       weatherData.humidity = res.list[0].main.humidity;
+      weatherData.windSpeed = res.list[0].wind.speed;
       weatherData.weather = res.list[0].weather[0].description;
-      console.log(weatherData);
+      console.log(res);
     });
 
     return weatherData;

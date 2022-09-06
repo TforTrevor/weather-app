@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { WeatherData } from 'src/app/models/WeatherData';
 import { WeatherService } from 'src/app/services/weather.service';
 
@@ -9,13 +9,17 @@ import { WeatherService } from 'src/app/services/weather.service';
 })
 export class WeatherComponent implements OnInit 
 {
+  @Input() zipCode: number = -1;
   public weatherData: WeatherData = new WeatherData();
+  public system: string = "imperial";
 
   constructor(private weatherService: WeatherService) { }
 
   ngOnInit(): void 
   {
-    this.weatherData = this.weatherService.getWeather(33431);
+    if (this.zipCode > -1)
+    {
+      this.weatherData = this.weatherService.getWeather(this.zipCode);
+    }    
   }
-
 }

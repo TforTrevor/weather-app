@@ -1,9 +1,27 @@
-<p>weather works!</p>
-{{weatherData.country}}
-{{weatherData.city}}
-{{weatherData.temp}}
-{{weatherData.temp_max}}
-{{weatherData.temp_min}}
-{{weatherData.feels_like}}
-{{weatherData.humidity}}
-{{weatherData.weather}}
+<mat-card>
+    <mat-card-title>
+        <span>{{weatherData.city}}, {{zipCode}}</span>
+        <!-- <span>{{weatherData.country}}</span> -->
+        <mat-button-toggle-group [(value)]="system">
+            <mat-button-toggle value="imperial">°F</mat-button-toggle>
+            <mat-button-toggle value="metric">°C</mat-button-toggle>
+        </mat-button-toggle-group>
+    </mat-card-title>
+    <mat-card-content>
+        <div class="weather">
+            <span>Weather: {{weatherData.weather}}</span>
+        </div>
+        <div class="temperature">
+            {{weatherData.temp | temperature: system}}
+        </div>
+        <div class="flex-column additional-info">
+            <span>Low: {{weatherData.tempMin | temperature: system}}</span>
+            <span>High: {{weatherData.tempMax | temperature: system}}</span>
+            <span>Feels Like: {{weatherData.feelsLike | temperature: system}}</span>
+        </div>
+        <div class="flex-column additional-info">
+            <span>Humidity: {{weatherData.humidity | number: '1.0-0'}}%</span>
+            <span>Wind: {{weatherData.windSpeed | number: '1.0-1'}}mph</span>
+        </div>
+    </mat-card-content>
+</mat-card>

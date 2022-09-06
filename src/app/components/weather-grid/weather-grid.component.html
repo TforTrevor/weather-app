@@ -1,1 +1,4 @@
 <p>weather-grid works!</p>
+<div class="grid" *ngFor="let zip of zipCodes">
+    <app-weather [zipCode]="zip"></app-weather>
+</div>
