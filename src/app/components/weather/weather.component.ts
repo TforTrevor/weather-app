@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { WeatherData } from 'src/app/models/WeatherData';
+import { IconService } from 'src/app/services/icon.service';
 import { WeatherService } from 'src/app/services/weather.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class WeatherComponent implements OnInit
   public weatherData: WeatherData = new WeatherData();
   public system: string = "imperial";
 
-  constructor(private weatherService: WeatherService) { }
+  constructor(private weatherService: WeatherService, private icon: IconService) { }
 
   ngOnInit(): void 
   {

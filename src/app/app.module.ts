@@ -20,6 +20,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { TemperaturePipe } from './pipes/temperature.pipe';
 import { ReactiveFormsModule } from '@angular/forms';
+import { IconService } from './services/icon.service';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatIconModule,
     MatToolbarModule
   ],
-  providers: [WeatherService],
+  providers: [WeatherService, IconService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -12,6 +12,7 @@ export class WeatherData
 
     weather: string = "";
     weatherDescription: string = "";
+    weatherIcon: string = "";
 
     time: Date = new Date(0);
 

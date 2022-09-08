@@ -57,6 +57,7 @@ export class WeatherService implements OnInit
       weatherData.windSpeed = res.list[0].wind.speed;
       weatherData.weather = res.list[0].weather[0].main;
       weatherData.weatherDescription = res.list[0].weather[0].description;
+      weatherData.weatherIcon = res.list[0].weather[0].icon;
       weatherData.time = new Date(res.list[0].dt_txt + " UTC");
 
       console.log(res);

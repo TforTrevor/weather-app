@@ -10,22 +10,24 @@
         </mat-button-toggle-group>
     </mat-card-title>
     <mat-card-content>
-        <div class="weather">
-            <span>{{weatherData.weather}}</span>
-            <span>{{weatherData.weatherDescription | titlecase}}</span>
-        </div>
-        <div class="temperature">
-            {{weatherData.temp | temperature: system}}
-        </div>
-        <div class="flex-column additional-info">
-            <span>Low: {{weatherData.tempMin | temperature: system}}</span>
-            <span>High: {{weatherData.tempMax | temperature: system}}</span>
-            <span>Feels Like: {{weatherData.feelsLike | temperature: system}}</span>
-        </div>
-        <div class="flex-column additional-info">
-            <span>Humidity: {{weatherData.humidity | number: '1.0-0'}}%</span>
-            <span>Wind: {{weatherData.windSpeed | number: '1.0-1'}}mph</span>
-        </div>
+        <mat-icon class="weather-icon" [svgIcon]="weatherData.weatherIcon"></mat-icon>
+        <div class="flex-column">
+            <div class="weather">{{weatherData.weatherDescription | titlecase}}</div>
+            <div class="flex-row">
+                <div class="temperature">
+                    {{weatherData.temp | temperature: system}}
+                </div>
+                <div class="flex-column additional-info">
+                    <span>Low: {{weatherData.tempMin | temperature: system}}</span>
+                    <span>High: {{weatherData.tempMax | temperature: system}}</span>
+                    <span>Feels Like: {{weatherData.feelsLike | temperature: system}}</span>
+                </div>
+                <div class="flex-column additional-info">
+                    <span>Humidity: {{weatherData.humidity | number: '1.0-0'}}%</span>
+                    <span>Wind: {{weatherData.windSpeed | number: '1.0-1'}}mph</span>
+                </div>
+            </div>
+        </div>        
     </mat-card-content>
 </mat-card>
 <mat-card *ngIf="weatherData.invalid" class="invalid">
