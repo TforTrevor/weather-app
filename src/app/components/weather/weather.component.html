@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card *ngIf="!weatherData.invalid">
     <mat-card-title>
         <div class="title">
             <span>{{weatherData.city}}, {{zipCode}}</span>
@@ -11,7 +11,8 @@
     </mat-card-title>
     <mat-card-content>
         <div class="weather">
-            <span>Weather: {{weatherData.weather}}</span>
+            <span>{{weatherData.weather}}</span>
+            <span>{{weatherData.weatherDescription | titlecase}}</span>
         </div>
         <div class="temperature">
             {{weatherData.temp | temperature: system}}
@@ -26,4 +27,10 @@
             <span>Wind: {{weatherData.windSpeed | number: '1.0-1'}}mph</span>
         </div>
     </mat-card-content>
+</mat-card>
+<mat-card *ngIf="weatherData.invalid" class="invalid">
+    <mat-card-title>
+        <span class="zip">{{zipCode}}</span>
+        <span>Invalid</span>
+    </mat-card-title>
 </mat-card>

@@ -1,14 +1,14 @@
 import { Injectable, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { WeatherData } from '../models/WeatherData';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WeatherService implements OnInit
 {
-  private apiKey: string = "0ffc282b7d48d0b4f0552267b9f44483";
+  private readonly apiKey: string = "0ffc282b7d48d0b4f0552267b9f44483";
   private weatherMap: Map<number, WeatherData> = new Map<number, WeatherData>();
 
   constructor(private http: HttpClient) { }
@@ -38,8 +38,15 @@ export class WeatherService implements OnInit
       "&units=imperial"
     );
 
-    //In-place replace data, every reference to data object should be updated
-    observable.subscribe(res => {
+    //In-place replace data
+    observable.pipe(catchError((err, caught) => {
+      if (err.status == 404)
+      {
+        weatherData.invalid = true;
+      }
+      return throwError(() => new Error("ZIP Code not found."));
+    })).subscribe(res => 
+    {
       weatherData.country = res.city.country;
       weatherData.city = res.city.name;
       weatherData.temp = res.list[0].main.temp;
@@ -48,8 +55,10 @@ export class WeatherService implements OnInit
       weatherData.feelsLike = res.list[0].main.feels_like;
       weatherData.humidity = res.list[0].main.humidity;
       weatherData.windSpeed = res.list[0].wind.speed;
-      weatherData.weather = res.list[0].weather[0].description;
+      weatherData.weather = res.list[0].weather[0].main;
+      weatherData.weatherDescription = res.list[0].weather[0].description;
       weatherData.time = new Date(res.list[0].dt_txt + " UTC");
+
       console.log(res);
     });
 

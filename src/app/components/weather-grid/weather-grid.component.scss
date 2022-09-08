@@ -1,6 +1,22 @@
-.grid {
+.weather-list {
     display: flex;
     flex-direction: column;
-    padding: 1rem;
     gap: 1rem;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.form {
+    display: flex;
+    gap: 1rem;
+
+    button {
+        margin-top: 0.25em;
+        margin-bottom: 1.59375em;
+    }
 }

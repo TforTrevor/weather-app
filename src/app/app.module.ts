@@ -11,7 +11,15 @@ import { WeatherGridComponent } from './components/weather-grid/weather-grid.com
 
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+
 import { TemperaturePipe } from './pipes/temperature.pipe';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,7 +34,14 @@ import { TemperaturePipe } from './pipes/temperature.pipe';
     BrowserAnimationsModule,
     HttpClientModule,
     MatCardModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    ReactiveFormsModule,
+    MatChipsModule,
+    MatIconModule,
+    MatToolbarModule
   ],
   providers: [WeatherService],
   bootstrap: [AppComponent]

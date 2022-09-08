@@ -11,6 +11,9 @@ export class WeatherData
     windSpeed: number = -1;
 
     weather: string = "";
+    weatherDescription: string = "";
 
     time: Date = new Date(0);
+
+    invalid: boolean = false;
 }

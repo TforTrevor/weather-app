@@ -1,8 +1,22 @@
-TODO: Figure out displaying time and date
+<!-- TODO:
 Maybe make a cool gradient for the time
-Weather icon
-Inputting zip codes
-Maybe auto input current zip code
-<div class="grid" *ngFor="let zip of zipCodes">
-    <app-weather [zipCode]="zip"></app-weather>
+Weather icon -->
+<div class="container">
+    <form [formGroup]="zipForm" (ngSubmit)="addZip()" class="form">
+        <mat-form-field appearance="outline">
+            <mat-label>Zip Code</mat-label>
+            <input matInput formControlName="zip" type="number"/>
+            <mat-error *ngIf="zipForm.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+        <button mat-flat-button color="primary" type="submit">Add</button>
+    </form>
+    <mat-chip-list>
+        <mat-chip *ngFor="let zip of zipCodes">
+            {{zip}}
+            <button matChipRemove (click)="removeZip(zip)"><mat-icon>cancel</mat-icon></button>
+        </mat-chip>
+    </mat-chip-list>
+    <div class="weather-list">
+        <app-weather *ngFor="let zip of zipCodes" [zipCode]="zip" @slideInOut></app-weather>
+    </div>
 </div>
