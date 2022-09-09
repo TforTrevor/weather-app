@@ -8,7 +8,7 @@ Weather icon -->
             <input matInput formControlName="zip" type="number"/>
             <mat-error *ngIf="zipForm.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
-        <button mat-flat-button color="primary" type="submit">Add</button>
+        <button mat-flat-button color="primary" type="submit" [disabled]="zipForm.invalid">Add</button>
     </form>
     <mat-chip-list>
         <mat-chip *ngFor="let zip of zipCodes">
@@ -18,5 +18,8 @@ Weather icon -->
     </mat-chip-list>
     <div class="weather-list">
         <app-weather *ngFor="let zip of zipCodes" [zipCode]="zip" @slideInOut></app-weather>
+        <div *ngIf="zipCodes.length < 1" class="empty">
+            Nothing to show here.
+        </div>
     </div>
 </div>

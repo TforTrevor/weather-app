@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Form, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, Form, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
@@ -23,7 +23,7 @@ export class WeatherGridComponent implements OnInit
   public zipCodes: number[] = [33431, 32608, 11581, 33];
   public zipForm = this.formBuilder.group({
     zip: new FormControl<number | null>(null, [
-      Validators.required, Validators.minLength(5)
+      this.zipValidator()
     ])
   });
 
@@ -38,15 +38,9 @@ export class WeatherGridComponent implements OnInit
   {
     const zipValue = this.zipForm.get("zip")?.value;
 
-    if (zipValue && zipValue > 0 && !this.zipCodes.includes(zipValue))
+    if (zipValue && this.zipForm.valid)
     {
       this.zipCodes.push(zipValue);
-    }
-    else 
-    {
-      this.zipForm.get("zip")?.setErrors({
-        notUnique: true
-      })
     }
   }
 
@@ -60,18 +54,36 @@ export class WeatherGridComponent implements OnInit
 
   public getErrorMessage(): string
   {
-    if (this.zipForm.get("zip")?.hasError("notUnique"))
+    if (this.zipForm.get("zip")?.hasError("duplicate"))
     {
       return "Duplicate ZIP code.";
     }
-    else if (this.zipForm.get("zip")?.hasError("minLength"))
+    else if (this.zipForm.get("zip")?.hasError("length"))
     {
       return "ZIP code must be at least 5 digits."
     }
-    else if (this.zipForm.get("zip")?.hasError("required"))
-    {
-      return "This field is required."
-    }
     return "Error.";
+  }
+
+  private zipValidator(): ValidatorFn 
+  {
+    return (control: AbstractControl): ValidationErrors | null => 
+    {
+      const value = String(control.value);
+      
+      //Length check
+      if (value.length < 5)
+      {
+        return {length: true};
+      }
+
+      //Duplicate check
+      if (this.zipCodes.includes(parseInt(value)))
+      {
+        return {duplicate: true};
+      }
+
+      return null;
+    };
   }
 }

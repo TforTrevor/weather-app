@@ -9,6 +9,7 @@ export class IconService {
 
   constructor(private iconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) 
   {
+    //Weather icons
     this.iconRegistry.addSvgIcon("01d", this.domSanitizer.bypassSecurityTrustResourceUrl("../../../assets/openweathermap/01d.svg"));
     this.iconRegistry.addSvgIcon("01n", this.domSanitizer.bypassSecurityTrustResourceUrl("../../../assets/openweathermap/01n.svg"));
     this.iconRegistry.addSvgIcon("02d", this.domSanitizer.bypassSecurityTrustResourceUrl("../../../assets/openweathermap/02d.svg"));
